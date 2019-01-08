@@ -21,6 +21,7 @@ app.use(express.static('public'))
 // Controller hook up
 // =============================================================================
 const items = require('./controllers/items');
+const auth = require('./controllers/auth');
 
 
 // temp home route
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 // Routing
 // =============================================================================
 app.use('/inventory', items);
+app.use('/auth', auth)
 
 // Listen on port
 app.listen(port, () => {
