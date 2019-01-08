@@ -1,0 +1,10 @@
+// controllers/items
+// dependencies
+const express = require('express');
+const router = express.Router()
+
+router.get('/items', (req, res) => {
+    res.render('inventory');
+})
+
+module.exports = router;
