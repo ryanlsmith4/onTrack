@@ -42,6 +42,7 @@ body, html {
 
 .nav {
     display: flex;
+    width: 100%;
     justify-content: left;
     background-color: brown;
     right: 0;
@@ -51,15 +52,14 @@ body, html {
 
 .item-inventory {
     margin-top: 5px;
-
 }
-
 
 .btn-add {
     color: white;
     margin-top: 5px;
     background-color: black;
 }
+
 .inv {
     margin-top: 5px;
     color: white;
@@ -79,9 +79,35 @@ hr {
     color: white;
 }
 
+.sign-up-background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://image.shutterstock.com/z/stock-photo-smart-technology-concept-with-global-logistics-partnership-industrial-container-cargo-freight-ship-1202131102.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 .sign-up-text button:hover {
     background-color: #555;
     color: white;
     cursor: pointer;
+}
 
+.info-title {
+    font-family: roboto;
+    font-size: 2em;
+    color: black;
+}
+
+.bottom {
+    color: white;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    text-align: center;
 }
