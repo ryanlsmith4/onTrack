@@ -3,7 +3,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const port = 3000
+const config = require('./config.js');
 
 const app  = express();
 
@@ -34,6 +34,6 @@ app.use('/inventory', items);
 app.use('/auth', auth)
 
 // Listen on port
-app.listen(port, () => {
+app.listen(config.serverPort, () => {
     console.log('Server listening on port 3000');
 });
