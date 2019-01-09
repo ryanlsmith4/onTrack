@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
 app.use('/inventory', items);
 app.use('/auth', auth)
 
+// DB Plug
+// =============================================================================
+require('./data/onTrack-db');
+
+
 // Listen on port
 app.listen(config.serverPort, () => {
     console.log('Server listening on port 3000');
