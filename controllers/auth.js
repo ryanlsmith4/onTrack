@@ -19,4 +19,8 @@ router.get('/log-in', (req, res) => {
     res.render('log-in');
 });
 
+router.get('/admin', (req, res) => {
+    res.render('admin')
+})
+
 module.exports = router;
