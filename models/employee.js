@@ -7,7 +7,7 @@ const EmployeeSchema = new Schema({
     email      : { type: String },
     password   : { type: String },
     itemsLogged:[{ type: String}],
-    timestamps :   true
+
 
 });
 

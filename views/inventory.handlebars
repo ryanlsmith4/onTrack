@@ -1,8 +1,10 @@
 <!--inventory.handlebars-->
 <label class="inv" for="">Inventory</label>
 <hr>
-
-<form class="" action="index.html" method="GET">
+<!-- {{#each items}}
+<a href="" style="color:white;">{{this.name}}</a>
+{{/each}} -->
+<form class="" action="/inventory/items/newItem" method="GET">
     <button class="btn btn-add btn-outline-success" type="button item-inventory" name="button">Add New Item</button>
 </form>
 
@@ -14,36 +16,25 @@
             <th scope="col">Status</th>
             <th scope="col">Price</th>
             <th scope="col">Employee</th>
-            <th scope="col"></th>
             <th scope="col">Quantity</th>
+            <th scope="col"></th>
         </tr>
     </thead>
+{{#each items}}
     <tbody>
         <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>here</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@mdo</td>
+            <td>{{this.name}}</td>
+            <td>{{this.status}}</td>
+            <td>${{this.price}}</td>
+            <td>{{this.employee}}</td>
+            <td>{{this.condition}}</td>
             <td>Edit</td>
-            <td>@mdo</td>
+
         </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@twitter</td>
-            <td>@mdo</td>
-        </tr>
+{{/each}}
+
+
     </tbody>
+
 </table>

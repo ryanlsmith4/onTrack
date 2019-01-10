@@ -20,7 +20,7 @@ router.get('/log-in', (req, res) => {
 });
 
 router.get('/admin', (req, res) => {
-    res.render('admin')
-})
+    res.render('admin');
+});
 
 module.exports = router;

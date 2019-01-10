@@ -1,0 +1,54 @@
+<!-- Add scanning route to this button -->
+<form class="" action="" method="GET">
+    <button type="submit" name="button">Scan Item</button>
+</form>
+<!--=========================================================================-->
+<form class="" action="/inventory/items/newItem" method="POST">
+<div class="form-group">
+    <label for="name">Item Name</label>
+    <input type="name"name="name" class="form-control" id="item-name" placeholder="Item Name">
+</div>
+<div class="form-group">
+    <label for="price">Item Price</label>
+    <input type="name" name="price" class="form-control" id="item-price" placeholder="100.00">
+</div>
+<div class="form-group">
+    <label for="category">Select a category</label>
+    <select name="category" class="form-control" id="item-category">
+        <option>Electronics</option>
+        <option>Kids</option>
+        <option>Books</option>
+        <option>Auto</option>
+        <option>Other</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="condition">Condition</label>
+    <select name="condition" class="form-control" id="item-quantity">
+        <option>New</option>
+        <option>Like New</option>
+        <option>Used</option>
+        <option>Functional</option>
+        <option>Broken</option>
+        <option>Other</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="description">Brief Description</label>
+    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<div class="form-group">
+<label for="status">Status</label>
+<select name="status" class="form-control" id="item-status">
+    <option>Recieved</option>
+    <option>Packaged</option>
+    <option>Sold</option>
+    <option>Shipped</option>
+    <option>Other</option>
+</select>
+
+
+</div>
+    <button type="submit" name="button">Add Item</button>
+</form>

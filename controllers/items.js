@@ -1,10 +1,49 @@
 // controllers/items
 // dependencies
+const Item = require('../models/item')
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 
-router.get('/items', (req, res) => {
-    res.render('inventory');
-})
+router.get('/items', (req, res, item) => {
+    Item.find()
+    .then(items => {
+        res.render('inventory', {
+            items: items
+        });
+    }).catch(err => {
+        console.log(err);
+        });
+});
+
+router.get('/items/newItem', (req, res) => {
+    res.render('newItem', {
+    });
+});
+
+router.get('/items/viewItem/:id', (req, res) => {
+    Item.findById(req.params.id).then((item) => {
+        res.render('item-show', {
+            item: item
+        });
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
+router.post('/items/newItem', (req, res) => {
+    // console.log(req.body)
+    const item = new Item(req.body);
+    console.log(req.body);
+
+    item
+    .save()
+    .then((newItem) => {
+        console.log(newItem);
+        res.redirect('/inventory/items')
+    }).catch(err => {
+        console.log(err)
+    });
+
+});
 
 module.exports = router;

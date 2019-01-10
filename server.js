@@ -18,6 +18,10 @@ app.use(bodyParser.json());
 // =============================================================================
 app.use(express.static('public'))
 
+// DB Plug
+// =============================================================================
+require('./data/onTrack-db');
+
 // Controller hook up
 // =============================================================================
 const items = require('./controllers/items');
@@ -33,9 +37,7 @@ app.get('/', (req, res) => {
 app.use('/inventory', items);
 app.use('/auth', auth)
 
-// DB Plug
-// =============================================================================
-require('./data/onTrack-db');
+
 
 
 // Listen on port
