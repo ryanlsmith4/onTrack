@@ -6,3 +6,27 @@
         <button class="btn btn-info" type="submit" name="button">Manager</button>
     </form> or <form action="/auth/sign-up/employee"> <button class="btn btn-info" type="submit" name="button">Employee</button></form>
 </div>
+
+
+<script type="text/javascript">
+var interval = setInterval(myTimer, 1500);
+const weHelpWith = ["We're here to help",
+    "Let's get organized",
+    "Work smarter not harder",
+    "Check us out",
+    "Solving logistics one customer at a time"
+];
+
+let i = 0;
+
+function myTimer() {
+    // var d = new Date();
+    if (i < weHelpWith.length) {
+        document.getElementById("change-sign").innerHTML = weHelpWith[i];
+        i++;
+    } else {
+        i = 0;
+    }
+}
+
+</script>

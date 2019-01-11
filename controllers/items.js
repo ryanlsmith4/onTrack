@@ -20,7 +20,15 @@ router.get('/items/newItem', (req, res) => {
     });
 });
 
+router.put('/items/viewItem/:id', (req, res) => {
+    Item.findByIdAndUpdate(req.params.id, req.body)
+    .then(item => {
+        res.redirect(`/items/viewItem/:id`)
+    });
+});
+
 router.get('/items/viewItem/:id', (req, res) => {
+    console.log("ROUTE HIT");
     Item.findById(req.params.id).then((item) => {
         res.render('item-show', {
             item: item

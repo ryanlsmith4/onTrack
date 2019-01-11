@@ -1,5 +1,10 @@
 // Get dependencies
 // =============================================================================
+
+require('dotenv').config();
+const bcrypt = require("bcrypt");
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -35,7 +40,7 @@ app.get('/', (req, res) => {
 // Routing
 // =============================================================================
 app.use('/inventory', items);
-app.use('/auth', auth)
+app.use('/auth', auth);
 
 
 

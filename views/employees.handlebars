@@ -1,3 +1,10 @@
 <label class="info-title">Employee's Info</label>
 <hr>
+<form action="/auth/sign-up/employee" method="POST">
+        <input type="hidden" name="admin" for="admin" value="false">
 {{> info}}
+<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+<!-- <hr class="my-4">
+<button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+<button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
+</form>

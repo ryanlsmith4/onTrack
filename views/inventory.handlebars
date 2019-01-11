@@ -1,9 +1,7 @@
 <!--inventory.handlebars-->
 <label class="inv" for="">Inventory</label>
 <hr>
-<!-- {{#each items}}
-<a href="" style="color:white;">{{this.name}}</a>
-{{/each}} -->
+
 <form class="" action="/inventory/items/newItem" method="GET">
     <button class="btn btn-add btn-outline-success" type="button item-inventory" name="button">Add New Item</button>
 </form>
@@ -17,22 +15,23 @@
             <th scope="col">Price</th>
             <th scope="col">Employee</th>
             <th scope="col">Quantity</th>
-            <th scope="col"></th>
+            <th scope="col">Edit</th>
         </tr>
     </thead>
-{{#each items}}
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>{{this.name}}</td>
-            <td>{{this.status}}</td>
-            <td>${{this.price}}</td>
-            <td>{{this.employee}}</td>
-            <td>{{this.condition}}</td>
-            <td>Edit</td>
-
-        </tr>
-{{/each}}
+    {{#each items}}
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{this.name}}</td>
+                <td>{{this.status}}</td>
+                <td>${{this.price}}</td>
+                <td>{{this.employee}}</td>
+                <td>{{this.condition}}</td>
+                <form class="" action="/inventory/items/viewItem/{{this.id}}" method="GET">
+                    <td><button type="submit" name="button">Edit</button></td>
+                </form>
+            </tr>
+    {{/each}}
 
 
     </tbody>

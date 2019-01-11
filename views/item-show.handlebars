@@ -1,0 +1,51 @@
+{{# item}}
+<form class="" action="/inventory/items/viewItem/{{this.id}}" method="PUT">
+<div class="form-group">
+    <label for="name">Item Name</label>
+    <input type="name"name="name" class="form-control" id="item-name" placeholder="{{this.name}}">
+</div>
+<div class="form-group">
+    <label for="price">Item Price</label>
+    <input type="name" name="price" class="form-control" id="item-price" placeholder="{{this.price}}">
+</div>
+<div class="form-group">
+    <label for="category">Select a category</label>
+    <select name="category" class="form-control" id="item-category">
+        <option value="">{{this.category}}</option>
+        <option>Electronics</option>
+        <option>Kids</option>
+        <option>Books</option>
+        <option>Auto</option>
+        <option>Other</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="condition">Condition</label>
+    <select name="condition" class="form-control" id="item-quantity">
+        <option value="">{{this.condition}}</option>
+        <option>New</option>
+        <option>Like New</option>
+        <option>Used</option>
+        <option>Functional</option>
+        <option>Broken</option>
+        <option>Other</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="description">Brief Description</label>
+    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="2">{{this.description}}</textarea>
+</div>
+
+<div class="form-group">
+<label for="status">Status</label>
+<select name="status" class="form-control" id="item-status">
+    <option value="">{{this.status}}</option>
+    <option>Recieved</option>
+    <option>Packaged</option>
+    <option>Sold</option>
+    <option>Shipped</option>
+    <option>Other</option>
+</select>
+<button type="submit" name="button">Confirm edit</button>
+</form>
+{{/ item}}
