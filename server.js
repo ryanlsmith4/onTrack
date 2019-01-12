@@ -15,13 +15,30 @@ const app  = express();
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+
 // Parse the Http request
 // =============================================================================
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+// Function for checking Authentication
+// =============================================================================
+var checkAuth = (req, res, next) => {
+    console.log("checking Authentication");
+    if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+        req.employee = null;
+    } else {
+        var token = req.cookies.nToken;
+        var decodedToken = jwt.decode(token, { complete: true }) || {};
+        req.employee = decodedToken.payload;
+    }
+    next();
+};
 // Middleware
 // =============================================================================
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use(checkAuth);
 
 // DB Plug
 // =============================================================================

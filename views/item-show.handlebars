@@ -1,17 +1,18 @@
 {{# item}}
-<form class="" action="/inventory/items/viewItem/{{this.id}}" method="PUT">
+<!-- can't use put routes fotr some reason -->
+<form action="/inventory/items/viewItem/{{this.id}}/edit" method="POST">
 <div class="form-group">
     <label for="name">Item Name</label>
-    <input type="name"name="name" class="form-control" id="item-name" placeholder="{{this.name}}">
+    <input type="name"name="name" class="form-control" id="item-name" value="{{this.name}}" placeholder="{{this.name}}">
 </div>
 <div class="form-group">
     <label for="price">Item Price</label>
-    <input type="name" name="price" class="form-control" id="item-price" placeholder="{{this.price}}">
+    <input type="name" name="price" class="form-control" id="item-price" value="{{this.price}}" placeholder="{{this.price}}">
 </div>
 <div class="form-group">
     <label for="category">Select a category</label>
     <select name="category" class="form-control" id="item-category">
-        <option value="">{{this.category}}</option>
+        <option value="{{this.category}}">{{this.category}}</option>
         <option>Electronics</option>
         <option>Kids</option>
         <option>Books</option>
@@ -22,7 +23,7 @@
 <div class="form-group">
     <label for="condition">Condition</label>
     <select name="condition" class="form-control" id="item-quantity">
-        <option value="">{{this.condition}}</option>
+        <option value="{{this.condition}}">{{this.condition}}</option>
         <option>New</option>
         <option>Like New</option>
         <option>Used</option>
@@ -39,7 +40,7 @@
 <div class="form-group">
 <label for="status">Status</label>
 <select name="status" class="form-control" id="item-status">
-    <option value="">{{this.status}}</option>
+    <option value="{{this.status}}">{{this.status}}</option>
     <option>Recieved</option>
     <option>Packaged</option>
     <option>Sold</option>

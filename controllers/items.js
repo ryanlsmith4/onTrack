@@ -5,10 +5,12 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/items', (req, res, item) => {
+    let currentUser = req.employee
     Item.find()
     .then(items => {
         res.render('inventory', {
-            items: items
+            items: items,
+            currentUser: currentUser
         });
     }).catch(err => {
         console.log(err);
@@ -16,22 +18,27 @@ router.get('/items', (req, res, item) => {
 });
 
 router.get('/items/newItem', (req, res) => {
+    let currentUser = req.employee
     res.render('newItem', {
+        currentUser: currentUser
     });
 });
-
-router.put('/items/viewItem/:id', (req, res) => {
+// Apparently Express can't use put routes so had to post...
+// Weird.
+router.post('/items/viewItem/:id/edit', (req, res) => {
     Item.findByIdAndUpdate(req.params.id, req.body)
     .then(item => {
-        res.redirect(`/items/viewItem/:id`)
+        res.redirect('/inventory/items/');
     });
 });
 
 router.get('/items/viewItem/:id', (req, res) => {
+    let currentUser = req.employee
     console.log("ROUTE HIT");
     Item.findById(req.params.id).then((item) => {
         res.render('item-show', {
-            item: item
+            item: item,
+            currentUser: currentUser
         });
     }).catch((err) => {
         console.log(err);

@@ -8,14 +8,21 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 
 router.get('/sign-up', (req, res) => {
-    res.render('sign-up');
+    let currentUser = req.employee
+    res.render('sign-up', {
+        currentUser: currentUser
+    });
 });
 
 router.get('/sign-up/manager', (req, res) => {
-    res.render('managers');
+    let currentUser = req.employee
+    res.render('managers', {
+        currentUser: currentUser
+    });
 });
 
 router.post('/sign-up/employee', (req, res) => {
+    let currentUser = req.employee
     //Create New manager
     const employee = new Employee(req.body);
 
@@ -32,12 +39,13 @@ router.post('/sign-up/employee', (req, res) => {
                 httpOnly: true
             });
             console.log('here '+req.body.admin);
-            if (req.body.admin == true) {
+            if (req.body.admin == 'true') {
                 Item.find()
                     .then(items => {
                         console.log(req.cookies);
                         res.render('admin', {
-                            items: items
+                            items: items,
+                            currentUser: currentUser
                         });
 
                     });
@@ -45,7 +53,8 @@ router.post('/sign-up/employee', (req, res) => {
                 Item.find()
                     .then(items => {
                         res.render('inventory', {
-                            items: items
+                            items: items,
+                            currentUser: currentUser
                         });
                     });
             }
@@ -60,6 +69,7 @@ router.post('/sign-up/employee', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    let currentUser = req.employee
     const email = req.body.email
     const password = req.body.password
     // Find Employee
@@ -92,19 +102,21 @@ router.post('/login', (req, res) => {
                     maxAge: 900000,
                     httpOnly: true
                 })
-                console.log("here " + employee.admin);
+                console.log("12here " + employee.admin);
                 if (employee.admin == true) {
                     Item.find()
                         .then(items => {
                             res.render('admin', {
-                                items: items
+                                items: items,
+                                currentUser: currentUser
                             });
                         });
                 } else {
                     Item.find()
                         .then(items => {
                             res.render('inventory', {
-                                items: items
+                                items: items,
+                                currentUser: currentUser
                             });
                         });
                 }
@@ -123,11 +135,17 @@ router.get('/sign-up/employee', (req, res) => {
 });
 
 router.get('/log-in', (req, res) => {
-    res.render('log-in');
+    let currentUser = req.employee
+    res.render('log-in', {
+        currentUser: currentUser
+    });
 });
 
 router.get('/admin', (req, res) => {
-    res.render('admin');
+    let currentUser = req.employee
+    res.render('admin', {
+        currentUser: currentUser
+    });
 });
 
 module.exports = router;
