@@ -10,6 +10,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const config = require('./config.js');
 
+
 const app  = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -52,7 +53,11 @@ const auth = require('./controllers/auth');
 
 // temp home route
 app.get('/', (req, res) => {
-    res.render('landing');
+    const currentUser = req.employee
+    console.log(currentUser);
+    res.render('landing', {
+        currentUser: currentUser
+    });
 });
 // Routing
 // =============================================================================

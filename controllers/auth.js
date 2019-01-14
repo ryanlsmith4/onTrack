@@ -38,7 +38,7 @@ router.post('/sign-up/employee', (req, res) => {
                 maxAge: 900000,
                 httpOnly: true
             });
-            console.log('here '+req.body.admin);
+            console.log('here ' + req.body.admin);
             if (req.body.admin == 'true') {
                 Item.find()
                     .then(items => {
@@ -73,9 +73,13 @@ router.post('/login', (req, res) => {
     const email = req.body.email
     const password = req.body.password
     // Find Employee
+    // This is interesting because the findOne(query, projection)
+    // query is what to select document by and
+    // projection is what data to bring with it. if projection is left empty the
+    // entire document comes
     Employee.findOne({
             email
-        }, 'email password')
+        }, )
         .then(employee => {
             if (!employee) {
                 return res.status(401).send({
@@ -102,7 +106,7 @@ router.post('/login', (req, res) => {
                     maxAge: 900000,
                     httpOnly: true
                 })
-                console.log("12here " + employee.admin);
+                console.log("here " + employee);
                 if (employee.admin == true) {
                     Item.find()
                         .then(items => {
@@ -113,8 +117,11 @@ router.post('/login', (req, res) => {
                         });
                 } else {
                     Item.find()
+
                         .then(items => {
+
                             res.render('inventory', {
+
                                 items: items,
                                 currentUser: currentUser
                             });
@@ -127,6 +134,8 @@ router.post('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie('nToken');
+    console.log("here");
+    console.log(req.employee);
     res.redirect('/');
 });
 

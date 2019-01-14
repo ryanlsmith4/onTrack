@@ -32,6 +32,21 @@ router.post('/items/viewItem/:id/edit', (req, res) => {
     });
 });
 
+// WEIRD try
+// =============================================================================
+// router.put('/items/viewItem/:id/edit', (req, res) => {
+//     Item.findById(req.param.id, req.body)
+//         .then(item => {
+//             item.save()
+//             .then(item => {
+//                 res.redirect('/inventory/items/');
+//             });
+//
+//
+//         });
+// });
+
+// =============================================================================
 router.get('/items/viewItem/:id', (req, res) => {
     let currentUser = req.employee
     console.log("ROUTE HIT");
@@ -48,12 +63,14 @@ router.get('/items/viewItem/:id', (req, res) => {
 router.post('/items/newItem', (req, res) => {
     // console.log(req.body)
     const item = new Item(req.body);
-    console.log(req.body);
+    console.log(req.employee.email);
+    item.employee = req.employee.email
+    // console.log(req.body);
 
     item
     .save()
     .then((newItem) => {
-        console.log(newItem);
+        // console.log(newItem);
         res.redirect('/inventory/items')
     }).catch(err => {
         console.log(err)

@@ -1,21 +1,35 @@
 <!--partials/header-->
 <nav class="nav">
-    <a href="/" style="font-size:2em; color:orange; margin-left:5px;" class="navbar-brand">onTrack</a>
-    <form action="/auth/sign-up" class="form-inline" method="GET">
-        <button class="btn btn-outline-success btn-sign" style="margin:5px" type="submit" >Sign Up</button>
-        </form>
-        <form action="/auth/log-in" class="form-inline">
-        <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Log In </button>
-        </form>
-        <form action="/auth/logout" class="form-inline">
-        <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Log out </button>
-        </form>
-        <form action="/inventory/items" class="form-inline">
-        <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Inventory </button>
-        </form>
+    {{#if currentUser}}
+        <a href="/inventory/items" style="font-size:2em; color:orange; margin-left:5px;" class="navbar-brand">onTrack</a>
 
-        <!-- TODO Get search funcitonality for admin-->
-        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    {{else}}
+
+        <a href="/" style="font-size:2em; color:orange; margin-left:5px;" class="navbar-brand">onTrack</a>
+    {{/if}}
+
+    {{#unless currentUser}}
+        <form action="/auth/sign-up" class="form-inline" method="GET">
+
+            <button class="btn btn-outline-success btn-sign" style="margin:5px" type="submit">Sign Up</button>
+        </form>
+        <form action="/auth/log-in" class="form-inline" method="GET">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Log In </button>
+        </form>
+    {{else}}
+        <form action="/auth/logout" class="form-inline" method="GET">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Log out </button>
+        </form>
+        <form action="/inventory/items" class="form-inline" method="GET">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="margin:5px" type="submit"> Inventory </button>
+        </form>
+    {{/unless}}
+
+
+
+
+    <!-- TODO Get search funcitonality for admin-->
+    <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 
 </nav>

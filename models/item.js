@@ -9,7 +9,7 @@ const ItemSchema = new Schema({
     price       : { type: Number },
     condition   : { type: String },
     status      : { type: String },
-    employee    : { type: String },
+    employee    : { type: String, required: true },
     purchasedAt : { type: Number },
     description : { type: String },
 });

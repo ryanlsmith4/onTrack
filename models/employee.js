@@ -3,15 +3,15 @@ const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema;
 
 const EmployeeSchema = new Schema({
-    createdAt  : { type: Date                   },
-    updatedAt  : { type: Date                   },
-    firstName  : { type: String                 },
-    lastName   : { type: String                 },
-    email      : { type: String                 },
-    password   : { type: String                 },
-    itemsLogged:[{ type: String                }],
-    phone      : { type: Number                 },
-    admin      : { type: Boolean, required: true}
+    createdAt  : { type: Date                              },
+    updatedAt  : { type: Date                              },
+    firstName  : { type: String                            },
+    lastName   : { type: String                            },
+    email      : { type: String                            },
+    password   : { type: String                            },
+    itemsLogged:[{ type: Schema.Types.ObjectId, ref: 'Item'}],
+    phone      : { type: Number                            },
+    admin      : { type: Boolean, required: true           }
 });
 
 EmployeeSchema.pre('save', function(next) {
