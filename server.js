@@ -1,4 +1,4 @@
-// Get dependencies
+// dependencies
 // =============================================================================
 
 require('dotenv').config();
@@ -54,7 +54,6 @@ const auth = require('./controllers/auth');
 // temp home route
 app.get('/', (req, res) => {
     const currentUser = req.employee
-    console.log(currentUser);
     res.render('landing', {
         currentUser: currentUser
     });

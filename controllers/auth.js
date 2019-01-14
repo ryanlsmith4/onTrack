@@ -1,5 +1,5 @@
-// controllers/auth
 // dependencies
+// =============================================================================
 const Item = require('../models/item')
 const Employee = require('../models/employee')
 const express = require('express');
@@ -134,8 +134,6 @@ router.post('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie('nToken');
-    console.log("here");
-    console.log(req.employee);
     res.redirect('/');
 });
 
@@ -150,11 +148,11 @@ router.get('/log-in', (req, res) => {
     });
 });
 
-router.get('/admin', (req, res) => {
-    let currentUser = req.employee
-    res.render('admin', {
-        currentUser: currentUser
-    });
-});
+// router.get('/admin', (req, res) => {
+//     let currentUser = req.employee
+//     res.render('admin', {
+//         currentUser: currentUser
+//     });
+// });
 
 module.exports = router;

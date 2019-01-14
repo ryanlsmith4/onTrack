@@ -105,7 +105,7 @@ hr {
     color: white;
     width: 100%;
     background-color: black;
-    position: sticky;
+    position: absolute;
     /* position: fixed; */
     left: 0;
     bottom: 0;
