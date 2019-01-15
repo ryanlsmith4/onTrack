@@ -22,7 +22,6 @@ This project will be available on Heroku. A link is at the bottom. Mind you this
 * express-handlebars
 * express-session
 * handlebars-helpers
-* hbs
 * http-errors
 * mongo-db
 * mongoose
