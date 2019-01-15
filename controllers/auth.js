@@ -24,9 +24,10 @@ router.get('/sign-up/manager', (req, res) => {
 router.post('/sign-up/employee', (req, res) => {
     let currentUser = req.employee
     //Create New manager
-    const employee = new Employee(req.body);
+    let employee = new Employee(req.body);
     employee.email = req.body.email;
     employee.password = employee.generateHash(req.body.password);
+    console.log(process.env.SECRET);
 
     employee
         .save()
