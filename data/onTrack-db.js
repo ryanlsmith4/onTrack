@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
 // Connect to DB
 // =============================================================================
 mongoose.connect(
-    config.url,
+    process.env.MONGODB_URI,
     { useNewUrlParser: true },
     (err, db) => {
         assert.equal(null, err);

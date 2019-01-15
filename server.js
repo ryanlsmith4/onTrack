@@ -74,6 +74,6 @@ app.use('/auth', auth);
 
 
 // Listen on port
-app.listen(config.serverPort, () => {
+app.listen(process.env.PORT, () => {
     console.log('Server listening on port 3000');
 });
