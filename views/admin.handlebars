@@ -95,7 +95,7 @@
           <table class="table table-hover table-dark item-inventory">
               <thead>
                   <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">Time</th>
                       <th scope="col">Name</th>
                       <th scope="col">Status</th>
                       <th scope="col">Price</th>
@@ -107,7 +107,7 @@
               {{#each items}}
                   <tbody>
                       <tr>
-                          <th scope="row">{{this._id}}</th>
+                          <th scope="row">{{this.updatedAt}}</th>
                           <td>{{this.name}}</td>
                           <td>{{this.status}}</td>
                           <td>${{this.price}}</td>
@@ -123,10 +123,11 @@
               </tbody>
 
           </table>
-          
+
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
           <script type="text/javascript">
+
           var ctx = document.getElementById("myChart");
           var myChart = new Chart(ctx, {
               type: 'line',

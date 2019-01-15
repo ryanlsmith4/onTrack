@@ -1,7 +1,7 @@
-var config = require('../../config.js');
+// var config = require('../../../config.js');
 
-api_key = config.api_key;
-api_secret = config.api_secret;
+// api_key = config.api_key;
+// api_secret = config.api_secret;
 var _scannerIsRunning = false;
 
 // -- node_modules
