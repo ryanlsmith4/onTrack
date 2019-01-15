@@ -8,10 +8,8 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const config = require('./config');
+
 const createError = require('http-errors');
-
-
 const app  = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -74,6 +72,6 @@ app.use('/auth', auth);
 
 
 // Listen on port
-app.listen(config.serverPort, () => {
+app.listen(process.env.PORT || 3000 , () => {
     console.log('Server listening on port 3000');
 });
