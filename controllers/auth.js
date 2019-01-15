@@ -63,10 +63,10 @@ router.post('/sign-up/employee', (req, res) => {
 
         })
         .catch((err) => {
-            const next_error = new Error('Email address already taken. Did you mean to login?');
+            // const next_error = new Error('Email address already taken. Did you mean to login?');
             console.log(err.message);
             res.render('error', {
-                message: next_error,
+                message: err,
                 error: 401
 
             })
