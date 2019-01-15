@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const config = require('./config');
+
 const createError = require('http-errors');
 
 

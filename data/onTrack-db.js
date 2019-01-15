@@ -2,7 +2,7 @@
 // Mongoose dependencies
 // =============================================================================
 const mongoose = require("mongoose");
-const config = require('../config.js');
+
 assert = require("assert");
 mongoose.Promise = global.Promise;
 // Connect to DB
