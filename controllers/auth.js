@@ -42,10 +42,11 @@ router.post('/sign-up/employee', (req, res) => {
                 httpOnly: true
             });
             console.log('here ' + req.body.admin);
-            let currentUser = req.employee
             if (req.body.admin == 'true') {
                 Item.find()
                     .then(items => {
+                        let currentUser = req.employee
+
                         console.log(req.cookies);
                         res.render('admin', {
                             items: items,
@@ -56,6 +57,8 @@ router.post('/sign-up/employee', (req, res) => {
             } else {
                 Item.find()
                     .then(items => {
+                        let currentUser = req.employee
+
                         res.render('inventory', {
                             items: items,
                             currentUser: currentUser
