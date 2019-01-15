@@ -10,8 +10,6 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
 const createError = require('http-errors');
-
-
 const app  = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -74,6 +72,6 @@ app.use('/auth', auth);
 
 
 // Listen on port
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000 , () => {
     console.log('Server listening on port 3000');
 });
