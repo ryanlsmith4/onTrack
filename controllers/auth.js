@@ -22,54 +22,47 @@ router.get('/sign-up/manager', (req, res) => {
 });
 
 router.post('/sign-up/employee', (req, res) => {
-    let currentUser = req.employee
-    //Create New manager
-    const employee = new Employee(req.body);
+let currentUser = req.employee
+//Create New manager
+const employee = new Employee(req.body);
 
-    employee
-        .save()
-        .then(employee => {
-            var token = jwt.sign({
-                _id: employee._id
-            }, process.env.SECRET, {
-                expiresIn: '60 days'
-            });
-            res.cookie('nToken', token, {
-                maxAge: 900000,
-                httpOnly: true
-            });
-            console.log('here ' + req.body.admin);
-            if (req.body.admin == 'true') {
-                Item.find()
-                    .then(items => {
-                        console.log(req.cookies);
-                        res.render('admin', {
-                            items: items,
-                            currentUser: currentUser
-                        });
-
-                    });
-            } else {
-                Item.find()
-                    .then(items => {
-                        res.render('inventory', {
-                            items: items,
-                            currentUser: currentUser
-                        });
-                    });
-            }
-
-        })
-        .catch((err) => {
-            const next_error = new Error('Email address already taken. Did you mean to login?');
-            console.log(err.message);
-            res.render('error', {
-                message: next_error,
-                error: 401
-
-            })
+employee
+    .save()
+    .then(employee => {
+        var token = jwt.sign({
+            _id: employee._id
+        }, process.env.SECRET, {
+            expiresIn: '60 days'
         });
+        res.cookie('nToken', token, {
+            maxAge: 900000,
+            httpOnly: true
+        });
+        console.log('here ' + req.body.admin);
+        if (req.body.admin == 'true') {
+            Item.find()
+                .then(items => {
+                    console.log(req.cookies);
+                    res.render('admin', {
+                        items: items,
+                        currentUser: currentUser
+                    });
+
+                });
+        } else {
+            Item.find()
+                .then(items => {
+                    res.render('inventory', {
+                        items: items,
+                        currentUser: currentUser
+                    });
+                });
+        }
+
+    })
+
 });
+
 
 router.post('/login', (req, res) => {
     let currentUser = req.employee
@@ -153,15 +146,15 @@ router.get('/log-in', (req, res) => {
 
 router.get('/admin', (req, res) => {
     let currentUser = req.employee
-        Item.find()
+    Item.find()
         .then(items => {
             res.render('admin', {
                 currentUser: currentUser,
-                items:items
+                items: items
             });
         });
-    });
+});
 
 
 
-            module.exports = router;
+module.exports = router;
