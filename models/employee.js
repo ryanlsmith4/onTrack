@@ -1,20 +1,24 @@
 // dependencies
 // =============================================================================
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
+require('mongoose-type-email');
 
 const EmployeeSchema = new Schema({
-    createdAt  : { type: Date                              },
-    updatedAt  : { type: Date                              },
-    firstName  : { type: String                            },
-    lastName   : { type: String                            },
-    email      : { type: String                            },
-    password   : { type: String                            },
-    itemsLogged:[{ type: Schema.Types.ObjectId, ref: 'Item'}],
-    phone      : { type: Number                            },
-    admin      : { type: Boolean, required: true           }
+    createdAt  : { type: Date                                    },
+    updatedAt  : { type: Date                                    },
+    firstName  : { type: String                                  },
+    lastName   : { type: String                                  },
+    email      : { type: mongoose.SchemaTypes.Email, unique: true},
+    password   : { type: String                                  },
+    itemsLogged:[{ type: Schema.Types.ObjectId, ref: 'Item'     }],
+    phone      : { type: Number                                  },
+    admin      : { type: Boolean, required: true                 }
 });
+
+EmployeeSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
 
 EmployeeSchema.pre('save', function(next) {
     //SET createdAt && updatedAtss
@@ -31,6 +35,7 @@ EmployeeSchema.pre('save', function(next) {
     }
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(user.password, salt, (err, hash) => {
+            if (err) return next(err);
             user.password = hash;
             next();
         });

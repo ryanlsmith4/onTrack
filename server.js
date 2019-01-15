@@ -51,6 +51,7 @@ const items = require('./controllers/items');
 const auth = require('./controllers/auth');
 
 
+
 // temp home route
 app.get('/', (req, res) => {
     const currentUser = req.employee
@@ -62,6 +63,7 @@ app.get('/', (req, res) => {
 // =============================================================================
 app.use('/inventory', items);
 app.use('/auth', auth);
+
 
 
 

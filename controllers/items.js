@@ -4,6 +4,9 @@ const Item = require('../models/item')
 const express = require('express');
 const router = express.Router();
 
+// // import from scannerProp.js
+// require('./scripts/scannerProp')
+
 router.get('/items', (req, res, item) => {
     let currentUser = req.employee
     Item.find()
@@ -61,5 +64,10 @@ router.post('/items/newItem', (req, res) => {
     });
 
 });
+
+router.get('/items/scanner', (req, res) => {
+    res.render('scan')
+})
+
 
 module.exports = router;
