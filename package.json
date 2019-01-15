@@ -26,6 +26,6 @@
         "mongoose-unique-validator": "^2.0.2",
         "popper": "^1.0.1",
         "quagga": "^0.12.1"
-    },
+    }
 
 }

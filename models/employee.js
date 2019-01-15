@@ -41,6 +41,7 @@ EmployeeSchema.pre('save', function(next) {
         });
     });
 });
+
 EmployeeSchema.methods.comparePassword = function(password, done) {
     bcrypt.compare(password, this.password, (err, isMatch) => {
         done(err, isMatch);

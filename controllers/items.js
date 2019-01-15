@@ -1,22 +1,25 @@
 // dependencies
 // =============================================================================
-const Item = require('../models/item')
+const Employee = require('../models/employee');
+const Item = require('../models/item');
 const express = require('express');
 const router = express.Router();
 
-// // import from scannerProp.js
+// import from scannerProp.js
 // require('./scripts/scannerProp')
-
-router.get('/items', (req, res, item) => {
+router.get('/items', (req, res) => {
     let currentUser = req.employee
-    Item.find()
-    .then(items => {
-        res.render('inventory', {
-            items: items,
-            currentUser: currentUser
-        });
-    }).catch(err => {
-        console.log(err);
+
+            Item.find()
+                .then(items => {
+                    res.render('inventory', {
+                        items: items,
+                        currentUser: currentUser
+                    });
+                })
+
+        .catch(err => {
+            console.log(err);
         });
 });
 
@@ -26,13 +29,14 @@ router.get('/items/newItem', (req, res) => {
         currentUser: currentUser
     });
 });
+
 // Apparently Express can't use put routes so had to post...
 // Weird.
 router.post('/items/viewItem/:id/edit', (req, res) => {
     Item.findByIdAndUpdate(req.params.id, req.body)
-    .then(item => {
-        res.redirect('/inventory/items/');
-    });
+        .then(item => {
+            res.redirect('/inventory/items/');
+        });
 });
 
 router.get('/items/viewItem/:id', (req, res) => {
@@ -55,13 +59,13 @@ router.post('/items/newItem', (req, res) => {
     item.employee = req.employee.email
 
     item
-    .save()
-    .then((newItem) => {
-        // console.log(newItem);
-        res.redirect('/inventory/items')
-    }).catch(err => {
-        console.log(err)
-    });
+        .save()
+        .then((newItem) => {
+            // console.log(newItem);
+            res.redirect('/inventory/items')
+        }).catch(err => {
+            console.log(err)
+        });
 
 });
 

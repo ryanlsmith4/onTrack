@@ -151,11 +151,17 @@ router.get('/log-in', (req, res) => {
     });
 });
 
-// router.get('/admin', (req, res) => {
-//     let currentUser = req.employee
-//     res.render('admin', {
-//         currentUser: currentUser
-//     });
-// });
+router.get('/admin', (req, res) => {
+    let currentUser = req.employee
+        Item.find()
+        .then(items => {
+            res.render('admin', {
+                currentUser: currentUser,
+                items:items
+            });
+        });
+    });
 
-module.exports = router;
+
+
+            module.exports = router;
