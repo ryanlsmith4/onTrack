@@ -30,6 +30,7 @@ This project will be available on Heroku. A link is at the bottom. Mind you this
 * mongoose-unique-validator
 * morgan
 * node.js
+* Semantics3 API
 
 ## Contributing
 
