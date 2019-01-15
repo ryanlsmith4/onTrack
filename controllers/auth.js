@@ -22,7 +22,7 @@ router.get('/sign-up/manager', (req, res) => {
 });
 
 router.post('/sign-up/employee', (req, res) => {
-    let currentUser = req.employee
+
     //Create New manager
     let employee = new Employee(req.body);
     employee.email = req.body.email;
@@ -42,6 +42,7 @@ router.post('/sign-up/employee', (req, res) => {
                 httpOnly: true
             });
             console.log('here ' + req.body.admin);
+            let currentUser = req.employee
             if (req.body.admin == 'true') {
                 Item.find()
                     .then(items => {
