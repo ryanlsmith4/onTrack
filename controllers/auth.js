@@ -4,7 +4,7 @@ const Item = require('../models/item')
 const Employee = require('../models/employee')
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 const router = express.Router()
 
 router.get('/sign-up', (req, res) => {
@@ -22,47 +22,56 @@ router.get('/sign-up/manager', (req, res) => {
 });
 
 router.post('/sign-up/employee', (req, res) => {
-let currentUser = req.employee
-//Create New manager
-const employee = new Employee(req.body);
+    let currentUser = req.employee
+    //Create New manager
+    const employee = new Employee(req.body);
+    employee.email = req.body.email;
+    employee.password = employee.generateHash(req.body.password);
 
-employee
-    .save()
-    .then(employee => {
-        var token = jwt.sign({
-            _id: employee._id
-        }, process.env.SECRET, {
-            expiresIn: '60 days'
-        });
-        res.cookie('nToken', token, {
-            maxAge: 900000,
-            httpOnly: true
-        });
-        console.log('here ' + req.body.admin);
-        if (req.body.admin == 'true') {
-            Item.find()
-                .then(items => {
-                    console.log(req.cookies);
-                    res.render('admin', {
-                        items: items,
-                        currentUser: currentUser
+    employee
+        .save()
+        .then(employee => {
+            var token = jwt.sign({
+                _id: employee._id
+            }, process.env.SECRET, {
+                expiresIn: '60 days'
+            });
+            res.cookie('nToken', token, {
+                maxAge: 900000,
+                httpOnly: true
+            });
+            console.log('here ' + req.body.admin);
+            if (req.body.admin == 'true') {
+                Item.find()
+                    .then(items => {
+                        console.log(req.cookies);
+                        res.render('admin', {
+                            items: items,
+                            currentUser: currentUser
+                        });
+
                     });
-
-                });
-        } else {
-            Item.find()
-                .then(items => {
-                    res.render('inventory', {
-                        items: items,
-                        currentUser: currentUser
+            } else {
+                Item.find()
+                    .then(items => {
+                        res.render('inventory', {
+                            items: items,
+                            currentUser: currentUser
+                        });
                     });
-                });
-        }
+            }
 
-    })
+        })
+        .catch((err) => {
+            const next_error = new Error('Email address already taken. Did you mean to login?');
+            console.log(err.message);
+            res.render('error', {
+                message: next_error,
+                error: 401
 
+            })
+        });
 });
-
 
 router.post('/login', (req, res) => {
     let currentUser = req.employee
@@ -82,8 +91,8 @@ router.post('/login', (req, res) => {
                     message: 'Wrong Email'
                 });
             }
-            employee.comparePassword(password, (err, isMatch) => {
-                if (!isMatch) {
+            // employee.comparePassword(password, (err, isMatch) => {
+                if (!employee.validPassword(req.body.password)) {
                     console.log("here");
                     return res.status(401).send({
                         message: 'Wrong Password'
@@ -123,8 +132,8 @@ router.post('/login', (req, res) => {
                             });
                         });
                 }
-
-            });
+            ////
+            // });
         });
 });
 
@@ -146,15 +155,15 @@ router.get('/log-in', (req, res) => {
 
 router.get('/admin', (req, res) => {
     let currentUser = req.employee
-    Item.find()
+        Item.find()
         .then(items => {
             res.render('admin', {
                 currentUser: currentUser,
-                items: items
+                items:items
             });
         });
-});
+    });
 
 
 
-module.exports = router;
+            module.exports = router;

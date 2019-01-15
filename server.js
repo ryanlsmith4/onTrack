@@ -2,7 +2,7 @@
 // =============================================================================
 
 require('dotenv').config();
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt-nodejs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const express = require('express');

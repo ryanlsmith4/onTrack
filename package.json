@@ -9,7 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "bcrypt": "^3.0.3",
+        "bcrypt-nodejs": "0.0.3",
         "body-parser": "^1.18.3",
         "bootstrap": "^4.2.1",
         "chart": "^0.1.2",
@@ -27,5 +27,4 @@
         "popper": "^1.0.1",
         "quagga": "^0.12.1"
     }
-
 }
