@@ -1,10 +1,25 @@
-// const config = require('./config.js');
-// api_key = config.api_key;
-// api_secret = config.api_secret;
+var config = require('../../config.js');
+
+api_key = config.api_key;
+api_secret = config.api_secret;
 var _scannerIsRunning = false;
 
+// -- node_modules
+// -- websites
+// ---- common
+// ------- config.js
+// ---- testing
+// ------- test.js
 
-resultArray = [];
+
+// function to have only unique values in array to avoid duplicates
+// =============================================================================
+var onlyUnique = (value, index, self) => {
+    return self.indexOf(value) === index;
+}
+const resultArray = [];
+
+var uniqueArray = [];
 
 function startScanner() {
     Quagga.init({
@@ -80,24 +95,54 @@ function startScanner() {
         console.log("RIGHT HERE "+ result.codeResult.code);
         console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
         var resultCode = result.codeResult.code
-        resultArray.push(resultCode)
+        resultArray.push(resultCode);
+        return uniqueArray = resultArray.filter( onlyUnique );
     });
 }
 
 
-// Start/stop scanner
-document.getElementById("btn").addEventListener("click", function () {
+
+
+
+
+const startStop = () => {
     if (_scannerIsRunning) {
         console.log("scanner off");
         console.log(resultArray);
+        console.log("=========================================");
+        console.log(uniqueArray);
         Quagga.stop();
-    } else {
+        _scannerIsRunning = false;
+    } else if(!_scannerIsRunning) {
         console.log("scanner on");
         startScanner();
     }
-}, false);
+
+}
 
 
-
-
-// module.export = resultArray;
+// Axios post to get data of the resultArray to the form page
+// =============================================================================
+// const loadBarCodes = () => {
+//     console.log('loadBarCodes');
+//     const barCodeArray = resultArray;
+//     axios.post('/bar-codes', (req, res) => {
+//         barCodeArray:barCodeArray
+//     }).then(() => {
+//         //maybe sort or thing... working on route
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// }
+//
+// const getBarCodes = () => {
+//     console.log("getBarCodes");
+//     const barCodeArray = resultArray;
+//     axios.get('/bar-codes', (req, res) => {
+//         barCodeArray:barCodeArray
+//     }).then((barCodeArray) => {
+//         document.getElementById('bar-codes').innerHTML = barCodeArray
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// }

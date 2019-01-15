@@ -105,8 +105,8 @@ hr {
     color: white;
     width: 100%;
     background-color: black;
-    position: absolute;
-    /* position: fixed; */
+    /* position: absolute; */
+    position: static;
     left: 0;
     bottom: 0;
     color: white;
@@ -155,3 +155,11 @@ hr {
 .main-cta {
   margin-top:1.5em;
 }
+
+.lg-in {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: bottom;
+    padding:2em;
+  }

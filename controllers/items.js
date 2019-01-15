@@ -67,7 +67,14 @@ router.post('/items/newItem', (req, res) => {
 
 router.get('/items/scanner', (req, res) => {
     res.render('scan')
-})
+});
+
+// trying to get data from the javascript
+// =============================================================================
+// router.get('/bar-codes', (req, res) => {
+//     console.log('barcodes ROUTE ' +req);
+//     // const barCodeArray = req;
+// });
 
 
 module.exports = router;

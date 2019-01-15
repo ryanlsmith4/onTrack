@@ -8,9 +8,10 @@
     <style>
         /* In order to place the tracking correctly */
         canvas.drawing, canvas.drawingBuffer {
-            position: absolute;
-            left: 0;
-            top: 0;
+
+            position: center;
+            left: 50%;
+            top: 50%;
         }
     </style>
 </head>
@@ -18,8 +19,15 @@
 <body>
     <!-- Div to show the scanner -->
     <div id="scanner-container"></div>
-    <input type="button" id="btn" value="Start/Stop the scanner" />
+    <button type="button" onclick="startStop()" id="btn" value="Start/Stop the scanner" />Start/Stop the scanner</button>
+    <!-- <button type="button" onclick="loadBarCodes()" id="btn"  />Get loaded barcodes</button>
+    <button type="button" onclick="getBarCodes()" id="btn"  />see loaded bar codes</button> -->
 
+    <div id="bar-codes">
+
+    </div>
+
+</body>
     <!-- Include the image-diff library -->
     <!-- <script src="quagga.min.js"></script> -->
     <script src="https://cdn.rawgit.com/serratus/quaggaJS/0420d5e0/dist/quagga.min.js"></script>
