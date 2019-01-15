@@ -8,7 +8,8 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const config = require('./config.js');
+const config = require('./config');
+const createError = require('http-errors');
 
 
 const app  = express();
@@ -36,10 +37,14 @@ var checkAuth = (req, res, next) => {
     }
     next();
 };
+
+
 // Middleware
 // =============================================================================
 app.use(express.static('public'));
 app.use(checkAuth);
+
+
 
 // DB Plug
 // =============================================================================
@@ -49,6 +54,7 @@ require('./data/onTrack-db');
 // =============================================================================
 const items = require('./controllers/items');
 const auth = require('./controllers/auth');
+
 
 
 // temp home route
@@ -62,6 +68,7 @@ app.get('/', (req, res) => {
 // =============================================================================
 app.use('/inventory', items);
 app.use('/auth', auth);
+
 
 
 

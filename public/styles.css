@@ -105,10 +105,61 @@ hr {
     color: white;
     width: 100%;
     background-color: black;
-    position: absolute;
-    /* position: fixed; */
+    /* position: absolute; */
+    position: static;
     left: 0;
     bottom: 0;
     color: white;
     text-align: center;
 }
+
+/****************
+   ERROR PAGE
+****************/
+.flex-stack {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:2em;
+}
+
+.butn {
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 1em 3em;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.butn-1 {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 3px #1c622c;
+    border-radius: 3px 3px 5px 5px;
+}
+
+.main-cta {
+  margin-top:1.5em;
+}
+
+.lg-in {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: bottom;
+    padding:2em;
+  }
