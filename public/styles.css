@@ -48,6 +48,7 @@ body, html {
     right: 0;
     left: 0;
     z-index: 999;
+
 }
 
 .item-inventory {
@@ -106,7 +107,8 @@ hr {
     width: 100%;
     background-color: black;
     /* position: absolute; */
-    position: static;
+    /* position: static; */
+    /* margin-top: 30%; */
     left: 0;
     bottom: 0;
     color: white;
